@@ -39,3 +39,13 @@
 
 # debug information files
 *.dwo
+
+# generated HGE folders
+_build/
+linklib/
+
+# generated HGE files
+bin/esm.exe
+bin/esm.pdb
+bin/hge.dll
+bin/hge.pdb
