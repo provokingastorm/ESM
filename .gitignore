@@ -49,3 +49,4 @@ bin/esm.exe
 bin/esm.pdb
 bin/hge.dll
 bin/hge.pdb
+bin/esm.log
