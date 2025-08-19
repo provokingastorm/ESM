@@ -2,7 +2,12 @@
 
 #include "..\..\include\hge.h"
 
-HGE *hge=0;
+HGE* hge = 0;
+
+int ScreenWidth = 1080;
+int ScreenHeight = 720;
+
+hgeQuad BackgroundQuad;
 
 bool FrameFunc()
 {
@@ -25,6 +30,8 @@ bool RenderFunc()
 	// Clear screen with black color
 	hge->Gfx_Clear(0);
 
+        hge->Gfx_RenderQuad(&BackgroundQuad);
+
 	// End rendering and update the screen
 	hge->Gfx_EndScene();
 
@@ -46,9 +53,22 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 	// Set up video mode
 	hge->System_SetState(HGE_WINDOWED, true);
-	hge->System_SetState(HGE_SCREENWIDTH, 1080);
-	hge->System_SetState(HGE_SCREENHEIGHT, 720);
+	hge->System_SetState(HGE_SCREENWIDTH, ScreenWidth);
+	hge->System_SetState(HGE_SCREENHEIGHT, ScreenHeight);
 	hge->System_SetState(HGE_SCREENBPP, 32);
+
+        // Setup the background quad
+        BackgroundQuad.v[1].x = ScreenWidth;
+        BackgroundQuad.v[2].x = ScreenWidth;
+        BackgroundQuad.v[2].y = ScreenHeight;
+        BackgroundQuad.v[3].y = ScreenHeight;
+
+        for (int i = 0; i < 4; i++)
+        {
+          BackgroundQuad.v[i].col = 0xFF0000FF;
+        }
+
+        BackgroundQuad.blend = (hgeBlendMode)(BLEND_DEFAULT);
 
 	if(hge->System_Initiate())
 	{
