@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Production/ESM User Stories.md",
+                "file": "Tasks/Setup the Playable Area.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "ESM User Stories"
+              "title": "Setup the Playable Area"
             }
           },
           {
@@ -27,16 +27,15 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Tasks/Setup the Playable Area.md",
+                "file": "Task Template.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Setup the Playable Area"
+              "title": "Task Template"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -184,17 +183,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "3ffd882435dc5c88",
+  "active": "b1a981fdf531fa03",
   "lastOpenFiles": [
-    "Production/ESM User Stories.md",
-    "Tasks/Setup the Playable Area.md",
-    "Tasks",
-    "Task Template.md",
-    "Design/Slime Volleyball Original Design.md",
     "ESM.md",
+    "Production/ESM User Stories.md",
+    "Task Template.md",
+    "Tasks/Setup the Playable Area.md",
+    "Production/ESM Roadmap.md",
+    "Tasks",
+    "Design/Slime Volleyball Original Design.md",
     "Production",
     "Design/ESM Design Ideas.md",
-    "Production/ESM Roadmap.md",
     "Tech/PartyCraft Roadmap.md",
     "PartyCraft.md",
     "Design/PartyCraft Design Ideas.md",

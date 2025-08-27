@@ -28,3 +28,7 @@
 ## Links
 - 
 
+## Notes
+ - 
+
+## Finished Tasks

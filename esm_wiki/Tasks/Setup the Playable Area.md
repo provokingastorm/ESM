@@ -10,7 +10,7 @@ As a player, I can see a gray rectangle at the bottom of the screen representing
 
 
 ## Next Actions
-- [ ] Figure out how to render a rectangle of a single color in HGE
+- [ ] Create a fixed playable in the center of the screen
 
 ## Before Submission Tasks
 - [ ] 
@@ -30,3 +30,8 @@ As a player, I can see a gray rectangle at the bottom of the screen representing
 ## Links
 - 
 
+## Notes
+ - 
+
+## Finished Tasks
+- [x] Figure out how to render a rectangle of a single color in HGE
