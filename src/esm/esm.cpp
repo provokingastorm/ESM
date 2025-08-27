@@ -8,7 +8,7 @@ HGE* hge = 0;
 int ScreenWidth = 1080;
 int ScreenHeight = 720;
 
-hgeQuad BackgroundQuad;
+hgeQuad PlayableAreaQuad;
 hgeQuad FloorQuad;
 hgeQuad NetQuad;
 
@@ -35,7 +35,7 @@ bool RenderFunc()
 	// Clear screen with black color
 	hge->Gfx_Clear(0);
 
-    hge->Gfx_RenderQuad(&BackgroundQuad);
+    hge->Gfx_RenderQuad(&PlayableAreaQuad);
     hge->Gfx_RenderQuad(&FloorQuad);
     hge->Gfx_RenderQuad(&NetQuad);
 
@@ -80,28 +80,43 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 void SetupWorldGraphics()
 {
-    // Setup the background quad
-    BackgroundQuad.v[1].x = ScreenWidth;
-    BackgroundQuad.v[2].x = ScreenWidth;
-    BackgroundQuad.v[2].y = ScreenHeight;
-    BackgroundQuad.v[3].y = ScreenHeight;
+    const float PlayableAreaWidth = 750.0f;
+    const float PlayableAreaHeight = 375.0f;
+    const float HalfPlayableWidth = PlayableAreaWidth * 0.5f;
+    const float HalfPlayableHeight = PlayableAreaHeight * 0.5f;
+    const float HalfScreenWidth = ScreenWidth * 0.5f;
+    const float HalfScreenHeight = ScreenHeight * 0.5f;
 
+    // Setup the playable area quad
+    PlayableAreaQuad.v[0].x = HalfScreenWidth - HalfPlayableWidth;
+    PlayableAreaQuad.v[0].y = HalfScreenHeight - HalfPlayableHeight;
+    PlayableAreaQuad.v[1].x = HalfScreenWidth + HalfPlayableWidth;
+    PlayableAreaQuad.v[1].y = PlayableAreaQuad.v[0].y;
+    PlayableAreaQuad.v[2].x = PlayableAreaQuad.v[1].x;
+    PlayableAreaQuad.v[2].y = HalfScreenHeight + HalfPlayableHeight;
+    PlayableAreaQuad.v[3].x = PlayableAreaQuad.v[0].x;
+    PlayableAreaQuad.v[3].y = PlayableAreaQuad.v[2].y;
+
+    // Setup the engine to render the playable area in blue
     for (int i = 0; i < 4; i++)
     {
-        BackgroundQuad.v[i].col = 0xFF0000FF;
+        PlayableAreaQuad.v[i].col = 0xFF0000FF;
     }
 
-    BackgroundQuad.blend = (hgeBlendMode)(BLEND_DEFAULT);
+    PlayableAreaQuad.blend = (hgeBlendMode)(BLEND_DEFAULT);
   
     // Setup the floor quad
-    const float FloorTopY = static_cast<float>(ScreenHeight - 100);
+    const float FloorTopY = PlayableAreaQuad.v[3].y - (PlayableAreaHeight * 0.2f);
+    FloorQuad.v[0].x = PlayableAreaQuad.v[0].x;
     FloorQuad.v[0].y = FloorTopY;
-    FloorQuad.v[1].x = ScreenWidth;
+    FloorQuad.v[1].x = PlayableAreaQuad.v[1].x;
     FloorQuad.v[1].y = FloorTopY;
-    FloorQuad.v[2].x = ScreenWidth;
-    FloorQuad.v[2].y = ScreenHeight;
-    FloorQuad.v[3].y = ScreenHeight;
+    FloorQuad.v[2].x = PlayableAreaQuad.v[2].x;
+    FloorQuad.v[2].y = PlayableAreaQuad.v[2].y;
+    FloorQuad.v[3].x = PlayableAreaQuad.v[3].x;
+    FloorQuad.v[3].y = PlayableAreaQuad.v[3].y;
 
+    // Setup the engine to render the floor in gray
     for (int i = 0; i < 4; i++)
     {
         FloorQuad.v[i].col = 0xFF808080;

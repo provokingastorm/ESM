@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Tasks/Setup the Playable Area.md",
+                "file": "Tasks/Setup Player 1.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Setup the Playable Area"
+              "title": "Setup Player 1"
             }
           },
           {
@@ -185,10 +185,12 @@
   },
   "active": "b1a981fdf531fa03",
   "lastOpenFiles": [
-    "ESM.md",
-    "Production/ESM User Stories.md",
     "Task Template.md",
-    "Tasks/Setup the Playable Area.md",
+    "Tasks/Setup Player 1.md",
+    "Production/ESM User Stories.md",
+    "Tasks Archive/Setup the Playable Area.md",
+    "Tasks Archive",
+    "ESM.md",
     "Production/ESM Roadmap.md",
     "Tasks",
     "Design/Slime Volleyball Original Design.md",
