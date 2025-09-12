@@ -38,5 +38,8 @@ add_subdirectory(src/libPNG)
 add_subdirectory(src/helpers)
 add_subdirectory(src/core)
 
+#--- curly engine library ---
+add_subdirectory(src/curlyengine)
+
 #--- Games ---
-add_subdirectory( src/esm )
+add_subdirectory(src/esm)
