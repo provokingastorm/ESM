@@ -7,6 +7,8 @@ As a player, I can see 6 points displayed on my side of the screen that will inc
 
 As a player, I can see a timer count up on the screen.  
 
+As a developer, I can draw the slimes colors dynamically.
+
 ## Completed Stories
 As a player, I can see a gray rectangle at the bottom of the screen representing the volleyball court, a white vertical line representing the net and a blue background filling the rest of the space.  
 

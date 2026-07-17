@@ -2,6 +2,7 @@
 #define ESMGameInstance_H_
 
 #include "hge.h"
+#include "hgevector.h"
 
 // ----------------------------------------------------------------------------
 // ESMGameInstance - Declaration
@@ -47,6 +48,14 @@ private:
 
     class RenderedQuad* FloorRenderable;
     class RenderedQuad* NetRenderable;
+
+    class StaticImage* PlayerSlimeStaticImage;
+    class hgeSprite* PlayerSlime;
+
+    hgeVector PlayerSlimeLocation;
+    hgeVector PlayerSlimeVelocity;
+
+    HTEXTURE PlayerSlimeHandle;
 
     bool bIsRunning;
 };

@@ -2,10 +2,12 @@
 #include "esmrenderables.h"
 #include "curlyengine.h"
 #include "sharedrenderables.h"
+#include "hgesprite.h"
 #include <cmath>
 
 ESMVolleyballGameInstance::ESMVolleyballGameInstance()
-    : bIsRunning(false)
+    : bIsRunning(false),
+      PlayerSlime(NULL)
 {
     FloorQuad = {};
     NetQuad = {};
@@ -23,6 +25,18 @@ ESMVolleyballGameInstance::~ESMVolleyballGameInstance()
     {
         delete NetRenderable;
         NetRenderable = NULL;
+    }
+
+    if (PlayerSlime != NULL)
+    {
+        delete PlayerSlime;
+        PlayerSlime = NULL;
+    }
+
+    if (PlayerSlimeStaticImage != NULL)
+    {
+        delete PlayerSlimeStaticImage;
+        PlayerSlimeStaticImage = NULL;
     }
 }
 
@@ -80,6 +94,26 @@ void ESMVolleyballGameInstance::Initialize(const hgeQuad& PlayableAreaQuad)
 
     NetRenderable = new RenderedQuad();
     NetRenderable->SetContent(NetQuad);
+
+    PlayerSlimeHandle = CurlyEngine::Instance().GetHGE().Texture_Load("esm/art/SlimeTest.png");
+    
+    if (PlayerSlimeHandle)
+    {
+        const float PlayerSlimeWidth = 32.0f;
+        const float PlayerSlimeHeight = 32.0f;
+        PlayerSlime = new hgeSprite(PlayerSlimeHandle, 0.0f, 0.0f, PlayerSlimeWidth, PlayerSlimeHeight);
+
+        if (PlayerSlime != NULL)
+        {
+            // Calculate the player's starting position by placing him in the center of the left side of the net.
+            const float LeftCourtDistance = (NetQuad.v[0].x - FloorQuad.v[0].x) * 0.5f;
+            PlayerSlimeLocation.x = LeftCourtDistance + FloorQuad.v[0].x - (PlayerSlimeWidth * 0.5f);
+            PlayerSlimeLocation.y = NetQuad.v[3].y - PlayerSlimeHeight;
+
+            PlayerSlimeStaticImage = new StaticImage();
+            PlayerSlimeStaticImage-> SetContent(*PlayerSlime);
+        }
+    }
 }
 
 void ESMVolleyballGameInstance::StartGame()
@@ -102,6 +136,8 @@ void ESMVolleyballGameInstance::Tick(float DeltaTime)
 {
     if (IsRunning())
     {
+        PlayerSlimeStaticImage->SetHotSpot(PlayerSlimeLocation.x, PlayerSlimeLocation.y);
+
         if (FloorRenderable != NULL)
         {
             CurlyEngine::Instance().AddToRenderQueue(*FloorRenderable);
@@ -110,6 +146,11 @@ void ESMVolleyballGameInstance::Tick(float DeltaTime)
         if (NetRenderable != NULL)
         {
             CurlyEngine::Instance().AddToRenderQueue(*NetRenderable);
+        }
+
+        if (PlayerSlimeStaticImage != NULL)
+        {
+            CurlyEngine::Instance().AddToRenderQueue(*PlayerSlimeStaticImage);
         }
     }
 }

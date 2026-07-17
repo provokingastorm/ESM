@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Scratchpad.md",
+                "file": "Production/ESM User Stories.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Scratchpad"
+              "title": "ESM User Stories"
             }
           },
           {
@@ -41,16 +41,16 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Task Template.md",
+                "file": "Tasks/Determine Collision Between Player and Ball.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Task Template"
+              "title": "Determine Collision Between Player and Ball"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -198,20 +198,22 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "79589efc20994b2d",
+  "active": "3ffd882435dc5c88",
   "lastOpenFiles": [
-    "Scratchpad.md",
-    "Task Template.md",
-    "Tasks/Setup Player 1.md",
+    "Tasks/Task Template.md",
+    "Tasks/Determine Collision Between Player and Ball.md",
+    "Untitled.md",
     "Production/ESM User Stories.md",
+    "Production/ESM Roadmap.md",
+    "ESM.md",
+    "Scratchpad.md",
+    "Design/Slime Volleyball Original Design.md",
+    "Design/ESM Design Ideas.md",
+    "Tasks/Setup Player 1.md",
     "Tasks Archive/Setup the Playable Area.md",
     "Tasks Archive",
-    "ESM.md",
-    "Production/ESM Roadmap.md",
     "Tasks",
-    "Design/Slime Volleyball Original Design.md",
     "Production",
-    "Design/ESM Design Ideas.md",
     "Tech/PartyCraft Roadmap.md",
     "PartyCraft.md",
     "Design/PartyCraft Design Ideas.md",
