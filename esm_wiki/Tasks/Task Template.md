@@ -1,34 +1,45 @@
 ## User Story
-
+****
+As a
 
 ## Acceptance Criteria
+****
 
 
 ## Status Report
+****
 
 
 ## Next Actions
+****
 - [ ] 
 
 ## Before Submission Tasks
+****
 - [ ] 
 
 ## Investigation Tasks
+****
 - [ ] 
 
 ## Deferred Actions
+****
 - [ ] 
 
 ## Experiments
+****
 
 
 ## Documents
-
+****
 
 ## Links
+****
 - 
 
 ## Notes
+****
  - 
 
 ## Finished Tasks
+****
