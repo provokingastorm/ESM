@@ -93,20 +93,20 @@ void ESMGameSubsystem::InitializeInternal()
     for (int i = 0; i < 4; i++)
     {
         NetQuad.v[i].col = 0xFFFFFFFF;
-}
+    }
 
     NetQuad.blend = (hgeBlendMode)(BLEND_DEFAULT);
 
     PlayerSlimeHandle = CurlyEngine::Instance().GetHGE().Texture_Load("esm/art/SlimeTest.png");
 
     if (PlayerSlimeHandle)
-{
+    {
         const float PlayerSlimeWidth = 32.0f;
         const float PlayerSlimeHeight = 32.0f;
         PlayerSlime = new hgeSprite(PlayerSlimeHandle, 0.0f, 0.0f, PlayerSlimeWidth, PlayerSlimeHeight);
 
         if (PlayerSlime != NULL)
-    {
+        {
             // Calculate the player's starting position by placing him in the center of the left side of the net.
             const float LeftCourtDistance = (NetQuad.v[0].x - FloorQuad.v[0].x) * 0.5f;
             PlayerSlimeLocation.x = LeftCourtDistance + FloorQuad.v[0].x - (PlayerSlimeWidth * 0.5f);
@@ -122,10 +122,10 @@ void ESMGameSubsystem::ShutdownInternal()
         delete PlayerSlime;
         PlayerSlime = NULL;
     }
-    }
+}
 
 void ESMGameSubsystem::Tick(float DeltaTime)
-    {
+{
 }
 
 void ESMGameSubsystem::Render()
