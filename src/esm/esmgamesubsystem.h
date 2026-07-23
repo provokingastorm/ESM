@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef ESMGameSubsystem_H_
 #define ESMGameSubsystem_H_
 
@@ -6,6 +8,7 @@
 #endif
 
 #include "hge.h"
+#include "hgevector.h"
 
 // ----------------------------------------------------------------------------
 // ESMGameSubsystem - Declaration
@@ -29,12 +32,18 @@ private:
     void InitializeInternal();
     void ShutdownInternal();
     void Tick(float DeltaTime);
-
-    void CleanupGameInstance();
+    void Render();
 
     hgeQuad PlayableAreaQuad;
-    class RenderedQuad* PlayableAreaRenderable;
-    class ESMGameInstance* GameInstance;
+    hgeQuad FloorQuad;
+    hgeQuad NetQuad;
+
+    class hgeSprite* PlayerSlime;
+
+    hgeVector PlayerSlimeLocation;
+    hgeVector PlayerSlimeVelocity;
+
+    HTEXTURE PlayerSlimeHandle;
 };
 
 #endif

@@ -12,6 +12,10 @@
 
 #include "hge_impl.h"
 
+// BEGIN CURLYENGINE MOD - Integrating the Dear ImGui debugging UI framework
+#include "imgui_impl_win32.h"
+#include "imgui_impl_dx9.h"
+// END CURLYENGINE MOD
 
 #define LOWORDINT(n) ((int)((signed short)(LOWORD(n))))
 #define HIWORDINT(n) ((int)((signed short)(HIWORD(n))))
@@ -164,6 +168,16 @@ namespace hgeImpl {
 
       ShowWindow(hwnd_, SW_SHOW);
 
+      // BEGIN CURLYENGINE MOD - Integrating the Dear ImGui debugging UI framework
+      IMGUI_CHECKVERSION();
+      ImGui::CreateContext();
+      ImGuiIO& io = ImGui::GetIO(); (void)io;
+      io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
+      io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+
+      ImGui_ImplWin32_Init(hwnd_);
+      // END CURLYENGINE MOD
+
       // Init subsystems
 
       timeBeginPeriod(1);
@@ -225,6 +239,11 @@ namespace hgeImpl {
       sound_done();
       gfx_done();
       done_power_status();
+
+      // BEGIN CURLYENGINE MOD - Integrating the Dear ImGui debugging UI framework
+      ImGui_ImplWin32_Shutdown();
+      ImGui::DestroyContext();
+      // END CURLYENGINE MOD
 
       if (hwnd_) {
         //ShowWindow(hwnd, SW_HIDE);
@@ -877,6 +896,12 @@ namespace hgeImpl {
     }
 
     LRESULT HGE_Impl::window_proc(HWND hwnd, const UINT msg, WPARAM wparam, LPARAM lparam) {
+        // BEGIN CURLYENGINE MOD - Integrating the Dear ImGui debugging UI framework
+        extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+        if (ImGui_ImplWin32_WndProcHandler(hwnd, msg, wparam, lparam))
+          return true;
+        // END CURLYENGINE MOD
+
       switch (msg) {
         case WM_CREATE:
           return FALSE;

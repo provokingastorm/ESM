@@ -12,6 +12,11 @@
 // GAPI dependent includes and defines (DX8/DX9 switch) by kvakvs@yandex.ru
 #include "impl/hgegapi.h"
 
+// BEGIN CURLYENGINE MOD - Integrating the Dear ImGui debugging UI framework
+#include "imgui_impl_win32.h"
+#include "imgui_impl_dx9.h"
+// END CURLYENGINE MOD
+
 namespace hgeImpl {
 
     void HGE_CALL HGE_Impl::Gfx_Clear(const hgeColor32 color) {
@@ -150,6 +155,12 @@ namespace hgeImpl {
         }
       }
 
+      // BEGIN CURLYENGINE MOD - Integrating the Dear ImGui debugging UI framework
+      ImGui_ImplDX9_NewFrame();
+      ImGui_ImplWin32_NewFrame();
+      ImGui::NewFrame();
+      // END CURLYENGINE MOD
+
       if (vert_array_) {
         post_error("Gfx_BeginScene: Scene is already being rendered");
         return false;
@@ -198,6 +209,13 @@ namespace hgeImpl {
     }
 
     void HGE_CALL HGE_Impl::Gfx_EndScene() {
+
+      // BEGIN CURLYENGINE MOD - Integrating the Dear ImGui debugging UI framework
+        ImGui::EndFrame();
+      ImGui::Render();
+      ImGui_ImplDX9_RenderDrawData(ImGui::GetDrawData());
+      // END CURLYENGINE MOD
+
       render_batch(true);
       d3d_device_->EndScene();
       if (!cur_target_) {
@@ -835,6 +853,10 @@ namespace hgeImpl {
       set_projection_matrix(screen_width_, screen_height_);
       D3DXMatrixIdentity(&view_matrix_);
 
+      // BEGIN CURLYENGINE MOD - Integrating the Dear ImGui debugging UI framework
+      ImGui_ImplDX9_Init(d3d_device_);
+      // END CURLYENGINE MOD
+
       if (!init_lost()) {
         return false;
       }
@@ -907,6 +929,10 @@ namespace hgeImpl {
     void HGE_Impl::gfx_done() {
       auto target = targets_;
 
+      // BEGIN CURLYENGINE MOD - Integrating the Dear ImGui debugging UI framework
+      ImGui_ImplDX9_Shutdown();
+      // END CURLYENGINE MOD
+
       while (textures_) {
         Texture_Free(textures_->tex);
       }
@@ -964,6 +990,10 @@ namespace hgeImpl {
       //if(!pD3DDevice) return false;
       //if(pD3DDevice->TestCooperativeLevel() == D3DERR_DEVICELOST) return;
 
+      // BEGIN CURLYENGINE MOD - Integrating the Dear ImGui debugging UI framework
+      ImGui_ImplDX9_InvalidateDeviceObjects();
+      // END CURLYENGINE MOD
+
       if (screen_surf_) {
         screen_surf_->Release();
       }
@@ -991,6 +1021,10 @@ namespace hgeImpl {
       }
 
       d3d_device_->Reset(d3dpp_);
+
+      // BEGIN CURLYENGINE MOD - Integrating the Dear ImGui debugging UI framework
+      ImGui_ImplDX9_CreateDeviceObjects();
+      // END CURLYENGINE MOD
 
       if (!init_lost()) {
         return false;

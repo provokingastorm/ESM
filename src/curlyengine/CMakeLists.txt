@@ -13,16 +13,14 @@ set( CURLY_ENGINE_SRC
 	enginesubsystem.h
 	gamesession.cpp
 	gamesession.h
-	irenderable.h
 	launch.cpp
-	sharedrenderables.cpp
-	sharedrenderables.h
 	vector2d.cpp
 	vector2d.h
     )
 
 #------ additional includes ------
 include_directories(${HGE_SOURCE_DIR}/include)
+include_directories(${HGE_SOURCE_DIR}/src/imgui)
 
 #------ link directories listed ------
 link_directories(${HGE_SOURCE_DIR}/linklib)

@@ -37,6 +37,7 @@ set(HGECORE_SRC
 
 #------ additional includes ------
 include_directories(${HGE_SOURCE_DIR}/include)
+include_directories(${HGE_SOURCE_DIR}/src/imgui)
 include_directories(${HGE_SOURCE_DIR}/src/libPNG)
 include_directories(${HGE_SOURCE_DIR}/src/zlib-1.2.5)
 include_directories(${HGE_SOURCE_DIR}/src/zlib-1.2.5/contrib/minizip)
@@ -48,11 +49,11 @@ link_directories(${HGE_SOURCE_DIR}/linklib)
 link_directories(${DIRECTX_SDK_DIR}/lib ${DIRECTX_SDK_DIR}/lib/x86)
 link_libraries(d3d9 d3dx9)
 link_libraries(winmm)
-link_libraries(zlib hgehelpers)
+link_libraries(zlib hgehelpers imgui)
 
 #------ target (for creating HGE.DLL) -----
 add_library(hge SHARED ${HGECORE_SRC})
-add_dependencies(hge hgehelpers hgelibpng zlib)
+add_dependencies(hge hgehelpers hgelibpng zlib imgui)
 
 #if (MSVC)
 #    SET_TARGET_PROPERTIES(hge PROPERTIES LINK_FLAGS "/NODEFAULTLIB:libci")

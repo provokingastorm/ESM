@@ -22,21 +22,6 @@ EngineSubsystem& GetGameSubsystem() \
 }
 
 // ----------------------------------------------------------------------------
-// EngineSubsystem - Enums
-// ----------------------------------------------------------------------------
-
-enum EEngineSubsystemMessages
-{
-	ESM_Invalid			= 0,
-	ESM_GamePaused		= 1,
-	ESM_GameResumed		= 2,
-	ESM_GameSaved		= 3,
-	ESM_GameLoaded		= 4,
-	ESM_PlayerSpawned	= 5,
-	ESM_Max				= 1000,
-};
-
-// ----------------------------------------------------------------------------
 // EngineSubsystem - Declaration
 // ----------------------------------------------------------------------------
 
@@ -55,6 +40,7 @@ public:
 	bool HasTicked() const;
 	virtual void OnFirstEngineTick();
 	virtual void Tick(float DeltaTime) {}
+    virtual void Render() {}
 
 	virtual void OnAppFocusGained() {}
 	virtual void OnAppFocusLost() {}

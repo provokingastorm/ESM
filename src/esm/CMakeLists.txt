@@ -3,17 +3,14 @@ cmake_minimum_required(VERSION 2.8)
 
 #------ sources ------
 set( ESM_SRC
-	esmgameinstance.cpp
-	esmgameinstance.h
     esmgamesubsystem.cpp
     esmgamesubsystem.h
-    esmrenderables.cpp
-    esmrenderables.h
     )
 
 #------ additional includes ------
 include_directories(${CURLY_ENGINE_SOURCE_DIR})
 include_directories(${HGE_SOURCE_DIR}/include)
+include_directories(${HGE_SOURCE_DIR}/src/imgui)
 include_directories(${HGE_SOURCE_DIR}/src/libPNG)
 include_directories(${HGE_SOURCE_DIR}/src/zlib-1.2.5)
 include_directories(${DIRECTX_SDK_DIR}/include)
